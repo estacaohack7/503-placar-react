@@ -5,21 +5,13 @@ class PlacarTime extends Component {
     constructor(props){
         super(props);
         this.texto = "Time da casa";
-        this.state = {
-            gols: 0
-        }
     }
-  
-    incrementar = () => {
-        this.setState({
-            gols: this.state.gols + 1
-        });
+
+    anotarGol = () => {
+        this.props.funcaoBotao(this.props.numero);
     }
 
     render() {
-
-        console.log(this.state);
-
         if(this.props.visitante === "true"){
             this.texto = "Time visitante";
         }
@@ -27,8 +19,8 @@ class PlacarTime extends Component {
         return (
             <div className="placartime">
                 <h1>{this.props.nomeTime || this.texto}</h1>
-                <h2>{this.state.gols}</h2>
-                <button className="gol" onClick={this.incrementar}>
+                <h2>{this.props.gols}</h2>
+                <button className="gol" onClick={this.anotarGol}>
                     GOL!
                 </button>
             </div>
